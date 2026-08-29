@@ -11,3 +11,10 @@ function initSupabase(){
   return false;
 }
 initSupabase();
+// Shared user navigation: every page that uses Supabase gets the same five buttons.
+if(!document.querySelector('script[data-shared-navigation]')){
+  const s=document.createElement('script');
+  s.src='js/navigation.js';
+  s.dataset.sharedNavigation='1';
+  document.head.appendChild(s);
+}
