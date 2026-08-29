@@ -1,10 +1,12 @@
-// Supabase client configuration for the VIP BD frontend.
-// This uses the public publishable key only. Never expose a service_role/secret key here.
-const SUPABASE_URL = 'https://ihxwkebgjvtndynhosbk.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_wcazcpFqsX1TDEeVROpoDQ_rDGXDBDR';
-
-let supabaseClient = null;
-
-if (window.supabase) {
-  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// VIP BD Supabase client
+const SUPABASE_URL='https://ihxwkebgjvtndynhosbk.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_wcazcpFqsX1TDEeVROpoDQ_rDGXDBDR';
+let supabaseClient=null;
+function initSupabase(){
+  if(window.supabase && typeof window.supabase.createClient==='function'){
+    supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+    return true;
+  }
+  return false;
 }
+if(!initSupabase()) console.error('Supabase JS library failed to load.');
